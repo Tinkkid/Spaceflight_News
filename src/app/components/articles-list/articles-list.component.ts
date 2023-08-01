@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Articles, ArticleItem } from 'src/app/models/articles';
+import { Articles } from 'src/app/models/articles';
 import { ArticlesApiService } from 'src/app/services/articles-api.service';
 
 @Component({

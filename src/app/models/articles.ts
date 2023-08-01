@@ -7,7 +7,5 @@ export interface Articles {
    published_at: Date | string,
 }
 
-export interface ArticleItem {
-   results: [];
-}
+
 
