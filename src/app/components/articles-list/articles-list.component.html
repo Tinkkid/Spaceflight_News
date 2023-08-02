@@ -26,8 +26,7 @@
    <h2 [innerHTML]="article.title | highlightSearch: searchValue"></h2>
    <mat-icon>calendar_today</mat-icon>
    <p>{{article.published_at | date:"MMMM d, y"}}</p>
-    <p>
-      {{article.summary}}
+    <p [innerHTML]="article.summary | highlightSearch: searchValue">
     </p>
   </mat-card-content>
   <mat-card-actions>

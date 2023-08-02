@@ -8,14 +8,15 @@ import { Articles } from '../models/articles';
 })
 export class ArticlesApiService {
   url: string = 'https://api.spaceflightnewsapi.net/v4/articles';
-  
-  searchResults = new Subject();
-  api_key: '20fe346ace044f759646706f39a86897';
 
   constructor(private http: HttpClient) { }
   
   searchArticles(searchValue:string):Observable<any>{
-    return this.http.get<Articles []>(`${this.url}/?title_contains=${searchValue}`)
+    return this.http.get<Articles []>(`${this.url}/?title_contains_one=${searchValue}&limit=30`)
+  }
+
+  searchArticlesBySummary(searchValue:string):Observable<any>{
+    return this.http.get<Articles []>(`${this.url}/?summary_contains_one=${searchValue}&limit=30`)
   }
 
   getArticles() {
