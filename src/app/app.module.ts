@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
 
 
 
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     ArticlesListComponent,
     ArticleItemComponent,
+    HighlightSearchPipe,
   ],
   imports: [
     BrowserModule,
