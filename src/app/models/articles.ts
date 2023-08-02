@@ -7,5 +7,8 @@ export interface Articles {
    published_at: Date | string,
 }
 
-
-
+export interface ArticlesOptions {
+   limit?: number;
+   sortParam?: string;
+   search?: string;
+}
