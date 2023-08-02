@@ -7,35 +7,27 @@ import { Articles } from '../models/articles';
   providedIn: 'root',
 })
 export class ArticlesApiService {
-  // url: string = 'https://api.spaceflightnewsapi.net/v4/articles';
-  url: string =
-    'https://newsapi.org/v2/everything?q=bitcoin&apiKey=20fe346ace044f759646706f39a86897';
-
+  url: string = 'https://api.spaceflightnewsapi.net/v4/articles';
+  
   searchResults = new Subject();
   api_key: '20fe346ace044f759646706f39a86897';
 
-  constructor(private http: HttpClient) {}
-
-  // getArticles() {
-  //   return this.http
-  //     .get<Articles[]>(this.url)
-  //     .pipe(catchError(this.handleError));
-  // }
-
-  // getArticlesById(id: string): Observable<Articles> {
-  //   return this.http.get<Articles>(`${this.url}/${id}`).pipe(
-  //       catchError(this.handleError)
-  //     );
-  // }
-
-  // searchArticles(searchValue:string):Observable<any>{
-  //   return this.http.get<Articles []>(`${this.url}/?_limit=10&title_contains=${searchValue}}`)
-  // }
-
+  constructor(private http: HttpClient) { }
+  
   searchArticles(searchValue:string):Observable<any>{
-    return this.http.get<Articles[]>(
-      `https://newsapi.org/v2/everything?q=${searchValue}&language=en&apiKey=20fe346ace044f759646706f39a86897`
-    );
+    return this.http.get<Articles []>(`${this.url}/?title_contains=${searchValue}`)
+  }
+
+  getArticles() {
+    return this.http
+      .get<Articles[]>(this.url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getArticlesById(id: string): Observable<Articles> {
+    return this.http.get<Articles>(`${this.url}/${id}`).pipe(
+        catchError(this.handleError)
+      );
   }
 
   handleError(error: any) {
