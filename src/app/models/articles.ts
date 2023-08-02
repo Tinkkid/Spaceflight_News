@@ -1,10 +1,19 @@
+// export interface Articles {
+//    id: number,
+//    title: string,
+//    url: string,
+//    image_url: string,
+//    summary: string,
+//    published_at: Date | string,
+// }
+
 export interface Articles {
-   id: number,
+   id: any,
    title: string,
    url: string,
-   image_url: string,
-   summary: string,
-   published_at: Date | string,
+   urlToImage: string,
+   description: string,
+   publishedAt: Date | string,
 }
 
 export interface ArticlesOptions {
@@ -12,3 +21,4 @@ export interface ArticlesOptions {
    sortParam?: string;
    search?: string;
 }
+

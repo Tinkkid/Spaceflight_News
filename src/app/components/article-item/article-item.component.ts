@@ -20,13 +20,13 @@ export class ArticleItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.articlesApiService
-        .getArticlesById(params['id'])
-        .subscribe((res) => {
-          this.article = res
-          console.log(res)
-        });
-    });
+    // this.route.params.subscribe((params) => {
+    //   this.articlesApiService
+    //     .getArticlesById(params['id'])
+    //     .subscribe((res) => {
+    //       this.article = res
+    //       console.log(res)
+    //     });
+    // });
   }
 }

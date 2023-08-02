@@ -12,6 +12,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import { SearchArticlesComponent } from './components/search-articles/search-articles.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -21,6 +24,7 @@ import {MatInputModule} from '@angular/material/input';
     FooterComponent,
     ArticlesListComponent,
     ArticleItemComponent,
+    SearchArticlesComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import {MatInputModule} from '@angular/material/input';
     MatIconModule,
     MatCardModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],
