@@ -1,3 +1,4 @@
+ <app-header></app-header>
  <section>
       <p>Filter by keywords</p>
       <form>
@@ -10,7 +11,7 @@
   </section>
 <section class="container">
    <mat-card class="example-card" *ngFor="let article of articles ">
-  <img class="article-image" mat-card-image src={{article.image_url}} alt="news">
+  <img class="article-image" mat-card-image src={{article.image_url}} alt={{article.title}}>
   <mat-card-content>
    <h2>{{article.title}}</h2>
    <mat-icon>calendar_today</mat-icon>
