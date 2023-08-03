@@ -12,8 +12,8 @@ import { ArticlesApiService } from 'src/app/services/articles-api.service';
 export class ArticlesListComponent implements OnInit {
   loading = false;
   articlesSubscription: Subscription;
-  showArticle = false;
   totalResult: any;
+  length: any;
 
   results: Articles[];
   searchValue = '';
@@ -31,37 +31,30 @@ export class ArticlesListComponent implements OnInit {
     this.loading = true;
     this.fetchSearchDataBySummary();
     this.fetchSearchData();
-  
   }
 
  async fetchSearchDataBySummary(): Promise<void> {
-    this.showArticle = true;
     await this.ArticlesApiService.searchArticlesBySummary(this.searchValue).subscribe(
       (articles) => {
         this.results = articles.results;
         this.totalResult = articles.count;
         this.loading = false;
-        console.log(articles.results);
+        this.length = articles.results.length;
       }
     );
  }
   
   fetchSearchData(): void {
-    this.showArticle = true;
     this.ArticlesApiService.searchArticles(this.searchValue).subscribe(
       (articles) => {
         this.results = articles.results;
         this.totalResult = articles.count;
         this.loading = false;
-        console.log(articles.results);
       }
     );
   }
 
- 
-
   onSearchSubmit(): void {
-    this.showArticle = true;
     this.searchValue = this.searchForm.value.searchValue ?? '';
      this.fetchSearchDataBySummary();
     this.fetchSearchData();
@@ -69,6 +62,5 @@ export class ArticlesListComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.articlesSubscription) this.articlesSubscription.unsubscribe;
-    this.showArticle = false;
   }
 }

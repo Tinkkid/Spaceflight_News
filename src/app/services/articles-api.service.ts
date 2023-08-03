@@ -23,7 +23,6 @@ export class ArticlesApiService {
       );
   }
 
-
   getArticlesById(id: string): Observable<Articles> {
     return this.http.get<Articles>(`${this.url}/${id}`).pipe(
         catchError(this.handleError)

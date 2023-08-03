@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<main class="article">
 <section class="search-container">
   <p class="search-label">Filter by keywords</p>
 
@@ -20,9 +20,11 @@
   <div class="total-result">
     <p>Result: {{totalResult}}</p>
   </div>
+  <div>
+    <p *ngIf="loading">Loading...</p>
+<p *ngIf="length === 0" class="no-found">No result found, try another keyword</p>
+</div>
 </section>
-
-<p *ngIf="loading">Loading...</p>
 
 <section class="container">
   <mat-card class="article-card" *ngFor="let article of results">
@@ -50,4 +52,6 @@
     </mat-card-actions>
   </mat-card>
 </section>
+</main>
+
 
