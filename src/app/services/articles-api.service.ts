@@ -12,11 +12,11 @@ export class ArticlesApiService {
   constructor(private http: HttpClient) { }
   
   searchArticles(searchValue:string):Observable<any>{
-    return this.http.get<Articles []>(`${this.url}/?title_contains_one=${searchValue}&limit=30`)
+    return this.http.get<Articles []>(`${this.url}/?title_contains_one=${searchValue}&limit=10`)
   }
 
   searchArticlesBySummary(searchValue:string):Observable<any>{
-    return this.http.get<Articles []>(`${this.url}/?summary_contains_one=${searchValue}&limit=30`)
+    return this.http.get<Articles []>(`${this.url}/?summary_contains_one=${searchValue}&limit=10`)
   }
 
   getArticles() {

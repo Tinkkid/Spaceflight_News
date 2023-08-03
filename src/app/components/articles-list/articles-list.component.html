@@ -1,6 +1,6 @@
- <app-header></app-header>
-  <p *ngIf="loading">Loading...</p>
-  <section>
+<app-header></app-header>
+<p *ngIf="loading">Loading...</p>
+<section>
   <p>Filter by keywords</p>
 
   <div class="search-container">
@@ -20,38 +20,49 @@
 </section>
 
 <section class="container" *ngIf="showArticle">
-   <mat-card class="example-card" *ngFor="let article of results">
-  <img class="article-image" mat-card-image src={{article.image_url}} alt={{article.title}}>
-  <mat-card-content>
-   <h2 [innerHTML]="article.title | highlightSearch: searchValue"></h2>
-   <mat-icon>calendar_today</mat-icon>
-   <p>{{article.published_at | date:"MMMM d, y"}}</p>
-    <p [innerHTML]="article.summary | highlightSearch: searchValue">
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button [routerLink]="['/articles', article.id]">Read more</button>
-    <mat-icon style="fill: transparent">arrow_right_alt</mat-icon>
-  </mat-card-actions>
-</mat-card>
-
+  <mat-card class="example-card" *ngFor="let article of results">
+    <img
+      class="article-image"
+      mat-card-image
+      src="{{ article.image_url }}"
+      alt="{{ article.title }}"
+    />
+    <mat-card-content>
+      <h2 [innerHTML]="article.title | highlightSearch : searchValue"></h2>
+      <mat-icon>calendar_today</mat-icon>
+      <p>{{ article.published_at | date : "MMMM d, y" }}</p>
+      <p [innerHTML]="(article.summary | highlightSearch : searchValue | slice: 0: 100) +'...'"></p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/articles', article.id]">
+        Read more
+      </button>
+      <mat-icon style="fill: transparent">arrow_right_alt</mat-icon>
+    </mat-card-actions>
+  </mat-card>
 </section>
 
-<section class="container" *ngIf="!showArticle" >
-   <mat-card class="example-card" *ngFor="let article of articles">
-  <img class="article-image" mat-card-image src={{article.image_url}} alt={{article.title}}>
-  <mat-card-content>
-   <h2>{{article.title}}</h2>
-   <mat-icon>calendar_today</mat-icon>
-   <p>{{article.published_at | date:"MMMM d, y"}}</p>
-    <p>
-      {{article.summary}}
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button [routerLink]="['/articles', article.id]">Read more</button>
-    <mat-icon style="fill: transparent">arrow_right_alt</mat-icon>
-  </mat-card-actions>
-</mat-card>
-
+<section class="container" *ngIf="!showArticle">
+  <mat-card class="example-card" *ngFor="let article of articles">
+    <img
+      class="article-image"
+      mat-card-image
+      src="{{ article.image_url }}"
+      alt="{{ article.title }}"
+    />
+    <mat-card-content>
+      <h2>{{ article.title }}</h2>
+      <mat-icon>calendar_today</mat-icon>
+      <p>{{ article.published_at | date : "MMMM d, y" }}</p>
+      <p>
+        {{ article.summary }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/articles', article.id]">
+        Read more
+      </button>
+      <mat-icon style="fill: transparent">arrow_right_alt</mat-icon>
+    </mat-card-actions>
+  </mat-card>
 </section>
