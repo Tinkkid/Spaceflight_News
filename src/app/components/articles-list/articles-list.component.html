@@ -1,25 +1,30 @@
 <app-header></app-header>
-<p *ngIf="loading">Loading...</p>
-<section>
-  <p>Filter by keywords</p>
 
-  <div class="search-container">
+<section class="search-container">
+  <p class="search-label">Filter by keywords</p>
+
+  <div class="search-wrapper">
     <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
-      <input
+      <div class="input-wrapper">
+        <input
         type="text"
         placeholder="Search here..."
         formControlName="searchValue"
+        class="search-input"
       />
-      <mat-icon matSuffix>search</mat-icon>
+      <mat-icon matSuffix class="search-icon">search</mat-icon>
+      </div>
     </form>
   </div>
 
-  <div>
-    <p>134 results</p>
+  <div class="total-result">
+    <p>Result: {{totalResult}}</p>
   </div>
 </section>
 
-<section class="container" *ngIf="showArticle">
+<p *ngIf="loading">Loading...</p>
+
+<section class="container">
   <mat-card class="article-card" *ngFor="let article of results">
     <img
       class="article-image"
@@ -34,7 +39,7 @@
       </div>
       <h2 class="article-title" [innerHTML]="article.title | highlightSearch : searchValue"></h2>
      
-      <p class="article-summary" > {{article.summary | slice: 0: 100 | highlightSearch : searchValue}}{{article.summary.length > 100 ? '...': ''}}</p>
+      <p class="article-summary" [innerHTML]="article.summary | truncate:[100, '...'] | highlightSearch : searchValue"></p>
     </mat-card-content>
     <mat-card-actions >
       <button class="article-btn" mat-button [routerLink]="['/articles', article.id]">
@@ -46,31 +51,3 @@
   </mat-card>
 </section>
 
-<section class="container" *ngIf="!showArticle">
-  <mat-card class="article-card" *ngFor="let article of articles">
-    <img
-      class="article-image"
-      mat-card-image
-      src="{{ article.image_url }}"
-      alt="{{ article.title }}"
-    />
-    <mat-card-content>
-      <div class="article-date">
-               <mat-icon>calendar_today</mat-icon>
-      <p>{{ article.published_at | date : "MMMM d, y" }}</p>
-      </div>
-
-      <h2 class="article-title">{{ article.title }}</h2>
-      <p class="article-summary" >
-        {{article.summary | slice: 0: 100}}{{article.summary.length > 100 ? '...': ''}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="article-btn_container">
-      <button class="article-btn" mat-button [routerLink]="['/articles', article.id]">
-        Read more
-         <mat-icon style="fill: transparent">arrow_forward</mat-icon>
-      </button>
-     
-    </mat-card-actions>
-  </mat-card>
-</section>

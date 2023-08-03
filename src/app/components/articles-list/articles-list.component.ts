@@ -11,9 +11,9 @@ import { ArticlesApiService } from 'src/app/services/articles-api.service';
 })
 export class ArticlesListComponent implements OnInit {
   loading = false;
-  articles: Articles[];
   articlesSubscription: Subscription;
   showArticle = false;
+  totalResult: any;
 
   results: Articles[];
   searchValue = '';
@@ -29,19 +29,9 @@ export class ArticlesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.fetchData();
     this.fetchSearchDataBySummary();
     this.fetchSearchData();
   
-  }
-
-  fetchData(): void {
-    this.articlesSubscription = this.ArticlesApiService.getArticles().subscribe(
-      (data: any) => {
-        this.articles = data.results;
-        this.loading = false;
-      }
-    );
   }
 
  async fetchSearchDataBySummary(): Promise<void> {
@@ -49,6 +39,8 @@ export class ArticlesListComponent implements OnInit {
     await this.ArticlesApiService.searchArticlesBySummary(this.searchValue).subscribe(
       (articles) => {
         this.results = articles.results;
+        this.totalResult = articles.count;
+        this.loading = false;
         console.log(articles.results);
       }
     );
@@ -59,6 +51,8 @@ export class ArticlesListComponent implements OnInit {
     this.ArticlesApiService.searchArticles(this.searchValue).subscribe(
       (articles) => {
         this.results = articles.results;
+        this.totalResult = articles.count;
+        this.loading = false;
         console.log(articles.results);
       }
     );

@@ -14,6 +14,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 
@@ -25,6 +26,7 @@ import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
     ArticlesListComponent,
     ArticleItemComponent,
     HighlightSearchPipe,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable,Subject, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Articles } from '../models/articles';
 
 @Injectable({
@@ -12,18 +12,17 @@ export class ArticlesApiService {
   constructor(private http: HttpClient) { }
   
   searchArticles(searchValue:string):Observable<any>{
-    return this.http.get<Articles []>(`${this.url}/?title_contains_one=${searchValue}&limit=10`)
+    return this.http.get<Articles []>(`${this.url}/?title_contains=${searchValue}&limit=10`).pipe(
+        catchError(this.handleError)
+      );
   }
 
   searchArticlesBySummary(searchValue:string):Observable<any>{
-    return this.http.get<Articles []>(`${this.url}/?summary_contains_one=${searchValue}&limit=10`)
+    return this.http.get<Articles []>(`${this.url}/?summary_contains=${searchValue}&limit=10`).pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getArticles() {
-    return this.http
-      .get<Articles[]>(this.url)
-      .pipe(catchError(this.handleError));
-  }
 
   getArticlesById(id: string): Observable<Articles> {
     return this.http.get<Articles>(`${this.url}/${id}`).pipe(
