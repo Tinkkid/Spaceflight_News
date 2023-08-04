@@ -13,9 +13,9 @@ export class ArticlesListComponent implements OnInit {
   loading = false;
   articlesSubscription: Subscription;
   totalResult: any;
-  length: any;
+  limit=10;
 
-  results: Articles[];
+  results: Articles[] =[];
   searchValue = '';
 
   searchForm = this.fb.nonNullable.group({
@@ -29,38 +29,32 @@ export class ArticlesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.fetchSearchDataBySummary();
     this.fetchSearchData();
   }
 
- async fetchSearchDataBySummary(): Promise<void> {
-    await this.ArticlesApiService.searchArticlesBySummary(this.searchValue).subscribe(
-      (articles) => {
-        this.results = articles.results;
-        this.totalResult = articles.count;
-        this.loading = false;
-        this.length = articles.results.length;
-      }
-    );
- }
-  
   fetchSearchData(): void {
-    this.ArticlesApiService.searchArticles(this.searchValue).subscribe(
+    this.ArticlesApiService.searchArticles(this.searchValue, this.limit).subscribe(
       (articles) => {
         this.results = articles.results;
         this.totalResult = articles.count;
         this.loading = false;
+        this.limit = articles.results.length;
       }
     );
   }
 
   onSearchSubmit(): void {
     this.searchValue = this.searchForm.value.searchValue ?? '';
-     this.fetchSearchDataBySummary();
     this.fetchSearchData();
+  }
+
+    showMore() {
+    this.limit += 10;
+      this.fetchSearchData();
   }
 
   ngOnDestroy() {
     if (this.articlesSubscription) this.articlesSubscription.unsubscribe;
   }
+
 }

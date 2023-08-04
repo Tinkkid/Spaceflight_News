@@ -15,7 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -37,8 +37,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatCardModule,
     HttpClientModule,
     MatInputModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

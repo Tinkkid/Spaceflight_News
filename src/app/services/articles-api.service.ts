@@ -9,24 +9,20 @@ import { Articles } from '../models/articles';
 export class ArticlesApiService {
   url: string = 'https://api.spaceflightnewsapi.net/v4/articles';
 
-  constructor(private http: HttpClient) { }
-  
-  searchArticles(searchValue:string):Observable<any>{
-    return this.http.get<Articles []>(`${this.url}/?title_contains=${searchValue}&limit=10`).pipe(
-        catchError(this.handleError)
-      );
-  }
+  constructor(private http: HttpClient) {}
 
-  searchArticlesBySummary(searchValue:string):Observable<any>{
-    return this.http.get<Articles []>(`${this.url}/?summary_contains=${searchValue}&limit=10`).pipe(
-        catchError(this.handleError)
-      );
+  searchArticles(searchValue: string, limit: number): Observable<any> {
+    return this.http
+      .get<Articles[]>(
+        `${this.url}?_title_contains=${searchValue}&summary_contains=${searchValue}&limit=${limit}`
+      )
+      .pipe(catchError(this.handleError));
   }
 
   getArticlesById(id: string): Observable<Articles> {
-    return this.http.get<Articles>(`${this.url}/${id}`).pipe(
-        catchError(this.handleError)
-      );
+    return this.http
+      .get<Articles>(`${this.url}/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   handleError(error: any) {

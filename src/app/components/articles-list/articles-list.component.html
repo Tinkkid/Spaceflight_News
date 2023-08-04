@@ -1,57 +1,73 @@
 <app-header></app-header>
 <main class="article">
-<section class="search-container">
-  <p class="search-label">Filter by keywords</p>
+  <section class="search-container">
+    <p class="search-label">Filter by keywords</p>
 
-  <div class="search-wrapper">
-    <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
-      <div class="input-wrapper">
-        <input
-        type="text"
-        placeholder="Search here..."
-        formControlName="searchValue"
-        class="search-input"
+    <div class="search-wrapper">
+      <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            placeholder="Search here..."
+            formControlName="searchValue"
+            class="search-input"
+          />
+          <mat-icon matSuffix class="search-icon">search</mat-icon>
+        </div>
+      </form>
+    </div>
+
+    <div class="total-result">
+      <p>Result: {{ totalResult }}</p>
+    </div>
+    <div>
+      <mat-spinner *ngIf="loading"></mat-spinner>
+      <p *ngIf="limit === 0" class="no-found">
+        No result found, try another keyword
+      </p>
+    </div>
+  </section>
+
+  <section class="container">
+    <mat-card class="article-card" *ngFor="let article of results">
+      <img
+        class="article-image"
+        mat-card-image
+        src="{{ article.image_url }}"
+        alt="{{ article.title }}"
       />
-      <mat-icon matSuffix class="search-icon">search</mat-icon>
-      </div>
-    </form>
-  </div>
+      <mat-card-content>
+        <div class="article-date">
+          <mat-icon>calendar_today</mat-icon>
+          <p>{{ article.published_at | date : "MMMM d, y" }}</p>
+        </div>
+        <h2
+          class="article-title"
+          [innerHTML]="article.title | highlightSearch : searchValue"
+        ></h2>
+        <p
+          class="article-summary"
+          [innerHTML]="
+            article.summary
+              | truncate : [100, '...']
+              | highlightSearch : searchValue
+          "
+        ></p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          class="article-btn"
+          mat-button
+          [routerLink]="['/articles', article.id]"
+        >
+          Read more
+          <mat-icon class="article-btn_icon">arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
 
-  <div class="total-result">
-    <p>Result: {{totalResult}}</p>
-  </div>
-  <div>
-    <p *ngIf="loading">Loading...</p>
-<p *ngIf="length === 0" class="no-found">No result found, try another keyword</p>
-</div>
-</section>
-
-<section class="container">
-  <mat-card class="article-card" *ngFor="let article of results">
-    <img
-      class="article-image"
-      mat-card-image
-      src="{{ article.image_url }}"
-      alt="{{ article.title }}"
-    />
-    <mat-card-content>
-      <div class="article-date">
-               <mat-icon>calendar_today</mat-icon>
-      <p>{{ article.published_at | date : "MMMM d, y" }}</p>
-      </div>
-      <h2 class="article-title" [innerHTML]="article.title | highlightSearch : searchValue"></h2>
-     
-      <p class="article-summary" [innerHTML]="article.summary | truncate:[100, '...'] | highlightSearch : searchValue"></p>
-    </mat-card-content>
-    <mat-card-actions >
-      <button class="article-btn" mat-button [routerLink]="['/articles', article.id]">
-        Read more
-       <mat-icon class="article-btn_icon">arrow_forward</mat-icon>
-      </button>
-
-    </mat-card-actions>
-  </mat-card>
-</section>
+  <button *ngIf="limit > 0 && limit < totalResult" (click)="showMore()" mat-button color="accent" class="load-more_btn">
+    Load More
+  </button>
 </main>
-
-
