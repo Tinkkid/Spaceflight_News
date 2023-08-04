@@ -3,19 +3,21 @@
   <section class="search-container">
     <p class="search-label">Filter by keywords</p>
 
-    <div class="search-wrapper">
-      <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
-        <div class="input-wrapper">
-          <input
-            type="text"
-            placeholder="Search here..."
-            formControlName="searchValue"
-            class="search-input"
-          />
-          <mat-icon matSuffix class="search-icon">search</mat-icon>
-        </div>
-      </form>
-    </div>
+    <form
+      class="search-form"
+      [formGroup]="searchForm"
+      (ngSubmit)="onSearchSubmit()"
+    >
+      <mat-form-field class="search-full-width">
+        <mat-label>Search...</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="searchValue"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </form>
 
     <div class="total-result">
       <p>Result: {{ totalResult }}</p>
@@ -67,7 +69,13 @@
     </mat-card>
   </section>
 
-  <button *ngIf="limit > 0 && limit < totalResult" (click)="showMore()" mat-button color="accent" class="load-more_btn">
+  <button
+    *ngIf="limit > 0 && limit < totalResult"
+    (click)="showMore()"
+    mat-button
+    color="accent"
+    class="load-more_btn"
+  >
     Load More
   </button>
 </main>
