@@ -34,8 +34,7 @@ git clone https://github.com/Tinkkid/Spaceflight_News
 ng serve
 ```
 
-
-7. Open [http://localhost:4200/](http://localhost:4200/) with your browser to see the result.
+3. Open [http://localhost:4200/](http://localhost:4200/) with your browser to see the result.
 
 ## Live page
 Open page - use link [Spaceflight news](https://tinkkid-space-4d20e6.netlify.app/)
