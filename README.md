@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Project
 
 <span>
-<img src="https://photos.google.com/search/_tra_/photo/AF1QipPOYGmbV1WW5WTJwJQ5cnK3ZW_I67aJKDM_TJhY" width="400" title="screen">
+<img src="./src/assets/images/screen-spacenews.png" width="400" title="screen">
 </span>
 
 ### Project built using:
