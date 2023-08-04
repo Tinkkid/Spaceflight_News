@@ -1,27 +1,44 @@
-# SpaceflightNews
+# Spaceflight News
+SPA application for viewing and searching for news from the space resource. All news are received using [Api SpaceFlight News](https://spaceflightnewsapi.net/).
+
+The project consists of two pages: the main page with all the latest news and search by keyword, and a page where you can view the selected news by clicking the button "Read more".
+
+10 news are displayed on the main page, more news are added when you press the button "Load more".
+
+When the user enters keywords into the field and the system displays all articles containing one of the keywords in the name or/and description. The matched keywords have yellow color.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+Project
 
-## Development server
+<span>
+<img src="https://photos.google.com/search/_tra_/photo/AF1QipPOYGmbV1WW5WTJwJQ5cnK3ZW_I67aJKDM_TJhY" width="400" title="screen">
+</span>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Project built using:
+- [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+- [Google Fonts](https://fonts.google.com/) - icons
+- [Angular Material](https://material.angular.io/)
+- [Api SpaceFlight News](https://spaceflightnewsapi.net/)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started
+1. Clone this repository:
 
-## Build
+```bash
+git clone https://github.com/Tinkkid/Spaceflight_News
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Run `ng serve` for a dev server. 
 
-## Running unit tests
+```bash
+ng serve
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+7. Open [http://localhost:4200/](http://localhost:4200/) with your browser to see the result.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Live page
+Open page - use link [Spaceflight news](https://tinkkid-space-4d20e6.netlify.app/)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
